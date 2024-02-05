@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Oppgave 3</title>
+		<meta charset="utf-8" />
+		
+    </head>
+
+    <body>
+        
+
+        <h2>Fartskontroll</h2>
+
+        Oppgi fart: <input type="number" id="fart">
+        <button type="button" id="registrer">Registrer</button>
+        <br><br>
+        Melding: <input type="text" id="melding">
+        <br><br>
+        Avvik:   <input type="text" id="avvik">
+        <br><br><br><br>
+        <button type="button" id="statistikk">Vis statistikk</button>
+<!--h-->
+        <button onClick="window.location.reload();">Nullstill</button>
+
+        <p id = "utskrift"></p>
+        <p id = "array"></p>
+
+
+        <script>
+       var fart = 0;
+      
+//a
+//b
+            var klikk = 0;
+            
+            console.clear();
+
+            
+        const biler = [];
+        
+        
+
+
+            
+
+            document.getElementById("registrer").onclick = registrer;
+//c
+            function registrer() {
+                klikk += 1;
+                
+                biler.push(document.getElementById("fart").value)
+                
+
+                var fart = document.getElementById("fart").value;
+                document.getElementById("avvik").value = Math.abs(fart - 80);
+
+                if (fart <= 80) {
+                document.getElementById("melding").value = "Lovlig fart";
+			    } 
+                else if (fart > 80 && fart <= 90) {
+                document.getElementById("melding").value = "1500 kr i bot";
+			    }  
+                else {
+                document.getElementById("melding").value = "3000 kr i bot ";
+                
+			    }
+            
+                
+            }
+//d
+//e
+//f
+//g
+            document.getElementById("statistikk").onclick = statistikk;
+
+            function statistikk() {
+                console.log(klikk);
+
+                console.log(biler);
+                
+                document.getElementById("array").innerHTML = "Biler: " + biler;
+                
+                let sum = 0;
+                let over80 = 0;
+                let over90 = 0;
+               
+
+                for (let i = 0; i < biler.length; i++) {
+                    sum += parseInt(biler[i]);
+                
+                
+                if (parseInt(biler[i]) > 80 && parseInt(biler[i]) <= 90) {
+                over80++;
+                }
+                else if (parseInt(biler[i]) > 90) {
+                over90++;
+
+                }
+
+                }
+                
+                var samletbot = over80 * 1500 + over90 * 3000;
+                var fartsgrensebrudd = over80 + over90;
+
+                console.log("Summen av alle tallene i arrayen er: " + sum);
+                console.log("Antall biler over 80 er: " + over80);
+                console.log("Antall biler over 90 er: " + over90);
+                document.getElementById("utskrift").innerHTML = "Antall biler som er målt: " + klikk + ". " + "Gjennomsnittsfarten er:" + " " + sum / klikk + ". " + "Antall bil(er) som har brutt fartsgrensen er" + " " + fartsgrensebrudd + ". " + "Samlet bot = " + samletbot + "kr";
+            
+            
+                
+            
+            }
+                
+            
+
+
+ 
+
+
+            
+            
+
+					
+
+                
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
